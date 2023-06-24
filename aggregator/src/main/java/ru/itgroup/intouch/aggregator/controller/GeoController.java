@@ -24,7 +24,7 @@ public class GeoController {
     }
 
     @GetMapping(value = "/country/{countryId}/city", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getCities(@PathVariable Long countryId){
+    public String getCities(@PathVariable Long countryId) {
         return client.feignGetCities(countryId);
     }
 }
