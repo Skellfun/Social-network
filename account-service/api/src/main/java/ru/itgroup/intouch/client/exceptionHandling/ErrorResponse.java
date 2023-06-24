@@ -1,31 +1,23 @@
 package ru.itgroup.intouch.client.exceptionHandling;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ErrorResponse {
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    private Date timestamp;
-
-    @JsonProperty(value = "code")
+    private String timestamp;
     private int code;
-
-    @JsonProperty(value = "status")
     private String status;
-
     @JsonProperty(value = "error_description")
     private String message;
-
-    @JsonProperty(value = "details")
     private String details;
 
     public ErrorResponse(int code, String status, String message, String details) {
-        this.timestamp = new Date();
+        timestamp = new Date().toString();
         this.code = code;
         this.status = status;
         this.message = message;
